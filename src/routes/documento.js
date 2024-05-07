@@ -34,4 +34,16 @@ router.put("/documentos/:id", (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
+router.delete("/documentos/:id", (req, res) => {
+    const { id } = req.params;
+    documentosSchema
+        .findByIdAndDelete(id)
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((error) => {
+            res.json({ message: error });
+        });
+});
+
 module.exports = router;

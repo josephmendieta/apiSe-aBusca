@@ -22,4 +22,16 @@ router.get("/documentos/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+
+router.put("/documentos/:id", (req, res) => {
+    const { id } = req.params;
+    const { palabrasClave, ruta, titulo, usuario, categoria, fechaCreacion } = req.body;
+    documentosSchema
+        .updateOne({ _id: id }, {
+            $set: { palabrasClave, ruta, titulo, usuario, categoria, fechaCreacion }
+        })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+
 module.exports = router;

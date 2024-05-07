@@ -15,4 +15,11 @@ router.get("/documentos", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+router.get("/documentos/:id", (req, res) => {
+    const { id } = req.params;
+    documentosSchema
+        .findById(id)
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
 module.exports = router;

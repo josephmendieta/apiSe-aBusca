@@ -14,4 +14,15 @@ router.get("/usuario", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+
+router.get("/usuario/:id", (req, res) => {
+    const { id } = req.params;
+    usuarioSchema
+        .findById(id)
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+
+
+
 module.exports = router;

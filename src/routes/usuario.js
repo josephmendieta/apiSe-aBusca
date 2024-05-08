@@ -9,4 +9,9 @@ router.post("/usuario", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+router.get("/usuario", (req, res) => {
+    usuarioSchema.find()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
 module.exports = router;

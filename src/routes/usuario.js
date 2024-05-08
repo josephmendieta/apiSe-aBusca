@@ -22,7 +22,16 @@ router.get("/usuario/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
-
+router.put("/usario/:id", (req, res) => {
+    const { id } = req.params;
+    const { nombre, correo, contrasena, fecharegistro, activo } = req.body;
+    usuarioSchema
+        .updateOne({ _id: id }, {
+            $set: {  nombre, correo, contrasena, fecharegistro, activo }
+        })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
 
 
 module.exports = router;

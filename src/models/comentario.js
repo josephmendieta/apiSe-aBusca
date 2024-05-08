@@ -22,4 +22,4 @@ const comentarioSchema = mongoose.Schema({
     }
     
 });
-module.exports = mongoose.model("Usuario", usuarioSchema);
+module.exports = mongoose.model("Comentario", comentarioSchema);

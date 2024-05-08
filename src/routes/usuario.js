@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router(); //manejador de rutas de express
 const usuarioSchema = require("../models/usuario");
-//Nuevo animal
+
 router.post("/usuario", (req, res) => {
     const usuario = usuarioSchema(req.body);
     usuario

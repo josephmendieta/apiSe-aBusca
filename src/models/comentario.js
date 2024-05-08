@@ -9,7 +9,7 @@ const comentarioSchema = mongoose.Schema({
         required: true,
     },
     puntuacion: {
-        type: int,
+        type: Number,
         required: true,
     },
     fecha: {

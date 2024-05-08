@@ -21,4 +21,24 @@ router.get("/comentario/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+
+router.put("/comentario/:id", (req, res) => {
+    const { id } = req.params;
+    const { nombre, correo, puntuacion, fecha, comentario } = req.body;
+    
+    comentarioSchema
+        .findByIdAndUpdate(id, { nombre, correo, puntuacion, fecha, comentario }, { new: true })
+        .then(updatedComment => {
+            if (!updatedComment) {
+                return res.status(404).json({ message: "Comentario no encontrado" });
+            }
+            res.json(updatedComment);
+        })
+        .catch(error => {
+            res.status(500).json({ message: "Error al actualizar el comentario", error });
+        });
+});
+
+
+
 module.exports = router;

@@ -25,7 +25,7 @@ router.get("/comentario/:id", (req, res) => {
 router.put("/comentario/:id", (req, res) => {
     const { id } = req.params;
     const { nombre, correo, puntuacion, fecha, comentario } = req.body;
-    
+
     comentarioSchema
         .findByIdAndUpdate(id, { nombre, correo, puntuacion, fecha, comentario }, { new: true })
         .then(updatedComment => {
@@ -38,7 +38,17 @@ router.put("/comentario/:id", (req, res) => {
             res.status(500).json({ message: "Error al actualizar el comentario", error });
         });
 });
-
+router.delete("/comentario/:id", (req, res) => {
+    const { id } = req.params;
+    comentarioSchemaSchema
+        .findByIdAndDelete(id)
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((error) => {
+            res.json({ message: error });
+        });
+});
 
 
 module.exports = router;

@@ -40,7 +40,7 @@ router.put("/comentario/:id", (req, res) => {
 });
 router.delete("/comentario/:id", (req, res) => {
     const { id } = req.params;
-    comentarioSchemaSchema
+    comentarioSchema
         .findByIdAndDelete(id)
         .then((data) => {
             res.json(data);

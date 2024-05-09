@@ -12,6 +12,9 @@ router.post('/signup', async (req, res) => {
     });
     usuario.contrasena = await usuario.encryptContrasena(usuario.contrasena);
     await usuario.save(); //save es un método de mongoose para guardar datos en MongoDB 
-    res.json(usuario);
+    //res.json(usuario);
+    res.json({
+        message: "Usuario guardado."
+    });
 });
 module.exports = router;

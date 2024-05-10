@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router(); //manejador de rutas de express
 const usuarioSchema = require("../models/usuario");
 const bcrypt = require("bcrypt");
+const jwt= require ("jsonwebtoken");
 router.post('/signup', async (req, res) => {
     const { nombre, correo, contrasena, fecharegistro, activo } = req.body;
     const usuario = new usuarioSchema({
@@ -12,9 +13,14 @@ router.post('/signup', async (req, res) => {
         activo: activo
     });
     usuario.contrasena = await usuario.encryptContrasena(usuario.contrasena);
-    await usuario.save(); //save es un método de mongoose para guardar datos en MongoDB 
+    await usuario.save();
+    const token=jwt.sign({id:usuario._id},process.env.SECRET,{
+        expiresIn:60*60*24,
+    });
     //res.json(usuario);
     res.json({
+        auth:true,
+        token,
         message: "Usuario guardado."
     });
 });
